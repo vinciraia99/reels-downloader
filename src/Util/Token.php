@@ -5,6 +5,8 @@ namespace Instagram\Util;
 final class Token
 {
     private const PARAM_REGEX = '/\("([a-zA-Z]+)",[0-9]+,"([a-zA-Z]+)",([0-9]+),([0-9]+),[0-9]+\)/';
+    const URL_TOKEN_REGEX = '/https:\/\/d\.rapidcdn\.app\/snapinsta\?token=[^&\'" <>\s]+/';
+    const TOKEN_REGEX = '/token=([^&]+)/';
 
     /**
      * @return string|false
@@ -32,23 +34,17 @@ final class Token
             $r .= chr((int) ((int) base_convert($s, $e, 10) - $t));
         }
 
-        return Token::extractTokens($r);
-    }
-
-    private static function extractTokens($text) {
-        // Prima estraiamo tutti gli URL che corrispondono al pattern specificato
-        $urlRegex = '/https:\/\/d\.rapidcdn\.app\/snapinsta\?token=[^&\'" <>\s]+/';
-        preg_match_all($urlRegex, $text, $urlMatches);
+        preg_match_all(self::URL_TOKEN_REGEX, $r, $urlMatches);
 
         $tokens = [];
         foreach ($urlMatches[0] as $url) {
-            // Per ogni URL, estraiamo il token
-            $tokenRegex = '/token=([^&]+)/';
-            if (preg_match($tokenRegex, $url, $tokenMatches)) {
-                $tokens[] = $tokenMatches[1]; // Aggiungiamo il token all'array dei token
+            if (preg_match(self::TOKEN_REGEX, $url, $tokenMatches)) {
+                $tokens[] = $tokenMatches[1];
             }
         }
-
-        return $tokens[count($tokens) -1];
+        if (count($tokens)>0)
+            return $tokens[count($tokens) -1];
+        else
+            return "";
     }
 }
