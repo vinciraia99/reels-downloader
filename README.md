@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-composer require gingteam/tiktok:dev-main
+composer require vinciraia99/instagramreels:dev-main
 ```
 
 
