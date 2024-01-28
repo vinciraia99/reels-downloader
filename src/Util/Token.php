@@ -45,6 +45,6 @@ final class Token
         if (count($tokens)>0)
             return $tokens[count($tokens) -1];
         else
-            return "";
+            return false;
     }
 }
