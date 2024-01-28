@@ -42,9 +42,10 @@ final class Token
                 $tokens[] = $tokenMatches[1];
             }
         }
-        if (count($tokens)>0)
-            return $tokens[count($tokens) -1];
-        else
+
+        if (empty($tokens)){
             return false;
+        }
+        return $tokens[count($tokens) -1];
     }
 }
