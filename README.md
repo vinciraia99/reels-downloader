@@ -1,8 +1,4 @@
-<img src="https://i.imgur.com/OyY198O.png" width="200px" align="right">
-
-# TikTok Downloader
-
-[![test](https://github.com/gingteam/tiktok-downloader/actions/workflows/ci.yml/badge.svg)](https://github.com/gingteam/tiktok-downloader/actions/workflows/ci.yml)
+# Instgram Reels Downloader
 
 ## Installation
 
@@ -16,12 +12,12 @@ composer require gingteam/tiktok:dev-main
 ```php
 <?php
 
-use TikTok\Driver\SnaptikDriver;
-use TikTok\VideoDownloader;
+use Instagram\Driver\SnaptikDriver;
+use Instagram\VideoDownloader;
 
 require __DIR__.'/vendor/autoload.php';
 
-$tiktok = new VideoDownloader(new SnaptikDriver());
+$reels = new VideoDownloader(new SnaptikDriver());
 
-echo $tiktok->get('https://www.tiktok.com/@philandmore/video/6805867805452324102');
+echo $reels->get('https://www.instagram.com/reel/.......');
 ```

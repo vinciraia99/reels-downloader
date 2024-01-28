@@ -1,6 +1,6 @@
 <?php
 
-namespace TikTok\Driver;
+namespace Instagram\Driver;
 
 /**
  * @template T

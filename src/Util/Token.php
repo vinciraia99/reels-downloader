@@ -1,12 +1,10 @@
 <?php
 
-namespace TikTok\Util;
+namespace Instagram\Util;
 
 final class Token
 {
     private const PARAM_REGEX = '/\("([a-zA-Z]+)",[0-9]+,"([a-zA-Z]+)",([0-9]+),([0-9]+),[0-9]+\)/';
-
-    private const TOKEN_REGEX = '/token=([a-zA-Z0-9._-]+)/';
 
     /**
      * @return string|false
@@ -34,8 +32,23 @@ final class Token
             $r .= chr((int) ((int) base_convert($s, $e, 10) - $t));
         }
 
-        preg_match(self::TOKEN_REGEX, $r, $matches);
+        return Token::extractTokens($r);
+    }
 
-        return array_pop($matches);
+    private static function extractTokens($text) {
+        // Prima estraiamo tutti gli URL che corrispondono al pattern specificato
+        $urlRegex = '/https:\/\/d\.rapidcdn\.app\/snapinsta\?token=[^&\'" <>\s]+/';
+        preg_match_all($urlRegex, $text, $urlMatches);
+
+        $tokens = [];
+        foreach ($urlMatches[0] as $url) {
+            // Per ogni URL, estraiamo il token
+            $tokenRegex = '/token=([^&]+)/';
+            if (preg_match($tokenRegex, $url, $tokenMatches)) {
+                $tokens[] = $tokenMatches[1]; // Aggiungiamo il token all'array dei token
+            }
+        }
+
+        return $tokens[count($tokens) -1];
     }
 }

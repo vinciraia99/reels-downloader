@@ -1,37 +1,25 @@
 {
-    "name": "gingteam/tiktok",
-    "description": "Tiktok video downloader",
+    "name": "vinciraia99/instagramreels",
+    "description": "Instagram reels video downloader",
     "type": "library",
     "require": {
         "symfony/browser-kit": "^6.3",
         "symfony/http-client": "^6.3",
         "symfony/css-selector": "^6.3",
-        "symfony/mime": "^6.3"
+        "symfony/mime": "^6.3",
+        "ext-dom": "*"
     },
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "TikTok\\": "./src"
+            "Instagram\\": "./src"
         }
     },
     "authors": [
         {
-            "name": "ging-dev",
-            "email": "thanh1101dev@gmail.com"
+            "name": "vinciraia99",
+            "email": "vr.99@ik.me"
         }
     ],
-    "minimum-stability": "stable",
-    "require-dev": {
-        "pestphp/pest": "^1.21",
-        "vimeo/psalm": "^5",
-        "danog/phpdoc": "^0.1.22"
-    },
-    "config": {
-        "allow-plugins": {
-            "pestphp/pest-plugin": true
-        }
-    },
-    "scripts": {
-        "test": "pest"
-    }
+    "minimum-stability": "stable"
 }

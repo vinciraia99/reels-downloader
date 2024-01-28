@@ -1,8 +1,8 @@
 <?php
 
-namespace TikTok;
+namespace Instagram;
 
-use TikTok\Driver\DriverInterface;
+use Instagram\Driver\DriverInterface;
 
 /**
  * @template T

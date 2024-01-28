@@ -1,6 +1,6 @@
 <?php
 
-namespace TikTok\Concern;
+namespace Instagram\Concern;
 
 use Symfony\Component\BrowserKit\HttpBrowser;
 
