@@ -6,6 +6,8 @@
 composer require vinciraia99/instagramreels:dev-main
 ```
 
+## Requirement
+This library package requires PHP 8.0 or later.
 
 ## Usage
 
