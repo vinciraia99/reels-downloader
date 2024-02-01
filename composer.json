@@ -8,8 +8,7 @@
         "symfony/http-client": "^6.3",
         "symfony/css-selector": "^6.3",
         "symfony/mime": "^6.3",
-        "ext-dom": "*",
-        "ext-curl": "*"
+        "ext-dom": "*"
     },
     "license": "MIT",
     "autoload": {

@@ -40,18 +40,4 @@ class SnaptikDriver implements DriverInterface
         return $token ? sprintf('%s/?token=%s&dl=1', self::CDN_URL, $token) : false;
     }
 
-    private function isMp4($url) {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_NOBODY, true);
-        curl_exec($ch);
-        if(curl_errno($ch)) {
-            curl_close($ch);
-            return false;
-        }
-        $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
-        curl_close($ch);
-
-        return $contentType === 'video/mp4';
-    }
-
 }
