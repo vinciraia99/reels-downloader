@@ -9,7 +9,7 @@ final class Token
     const TOKEN_REGEX = '/token=([^&]+)/';
 
     /**
-     * @return array|false
+     * @return string|false
      */
     public static function extract(string $string)
     {
@@ -46,6 +46,6 @@ final class Token
         if (empty($tokens)){
             return false;
         }
-        return $tokens;
+        return $tokens[count($tokens) -1];
     }
 }

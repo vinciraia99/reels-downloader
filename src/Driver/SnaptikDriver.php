@@ -35,17 +35,9 @@ class SnaptikDriver implements DriverInterface
         /** @var \Symfony\Component\BrowserKit\Response */
         $response = $browser->getResponse();
 
-        $tokens = Token::extract($response->getContent());
-        $tokenselect = false;
-        for ($i = count($tokens) - 1; $i >= 0; $i--) {
-            $token = $tokens[$i];
-            if ($this->isMp4(sprintf('%s/?token=%s&dl=1', self::CDN_URL, $token))) {
-                $tokenselect = $token;
-                break;
-            }
-        }
+        $token = Token::extract($response->getContent());
 
-        return $tokenselect ? sprintf('%s/?token=%s&dl=1', self::CDN_URL, $tokenselect) : false;
+        return $token ? sprintf('%s/?token=%s&dl=1', self::CDN_URL, $token) : false;
     }
 
     private function isMp4($url) {
