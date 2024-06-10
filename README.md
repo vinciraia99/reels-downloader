@@ -1,4 +1,4 @@
-# Instgram Reels Downloader
+# Instagram Reels Downloader
 
 ## Installation
 
