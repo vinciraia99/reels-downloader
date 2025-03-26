@@ -19,13 +19,13 @@ class SnaptikDriver implements DriverInterface
         $browser = $this->getBrowser();
 
         $crawler = $browser
-            ->request('GET', 'https://snapinsta.app/')
+            ->request('GET', 'https://snapins.ai/')
             ->filter('form')
             ->first();
 
         /** @var \DOMElement */
         $el = $crawler->getNode(0);
-        $el->setAttribute('action', '/get-data.php');
+        $el->setAttribute('action', '/action2.php');
         $el->setAttribute('method', 'POST');
 
         $form = $crawler->form()->setValues(['url' => $url]);
@@ -35,12 +35,9 @@ class SnaptikDriver implements DriverInterface
         /** @var \Symfony\Component\BrowserKit\Response */
         $response = $browser->getResponse();
 
-        //$token = Token::extract($response->getContent());
+        $token = Token::extract($response->getContent());
 
-        //return $token ? sprintf('%s/?token=%s&dl=1', self::CDN_URL, $token) : false;
-
-        $json = json_decode($response->getContent(),true);
-        return $json["files"][0]["video_url"];
+        return $token ? sprintf('%s/?token=%s&dl=1', self::CDN_URL, $token) : false;
     }
 
 }

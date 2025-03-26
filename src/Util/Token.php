@@ -5,7 +5,7 @@ namespace Instagram\Util;
 final class Token
 {
     private const PARAM_REGEX = '/\("([a-zA-Z]+)",[0-9]+,"([a-zA-Z]+)",([0-9]+),([0-9]+),[0-9]+\)/';
-    const URL_TOKEN_REGEX = '/https:\/\/d\.rapidcdn\.app\/snapinsta\?token=[^&\'" <>\s]+/';
+    const URL_TOKEN_REGEX = '/https:\/\/d\.rapidcdn\.app\/snapinst\?token=[^&\'" <>\s]+/';
     const TOKEN_REGEX = '/token=([^&]+)/';
 
     /**
