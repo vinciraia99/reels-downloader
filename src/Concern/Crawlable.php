@@ -3,6 +3,7 @@
 namespace Instagram\Concern;
 
 use Symfony\Component\BrowserKit\HttpBrowser;
+use Symfony\Component\HttpClient\CurlHttpClient;
 
 trait Crawlable
 {
@@ -14,5 +15,15 @@ trait Crawlable
         }
 
         return $browser;
+    }
+
+    /**
+     * @return CurlHttpClient
+     */
+    public function getCurl(): CurlHttpClient
+    {
+        static $curl = null;
+        $curl ??= new CurlHttpClient();
+        return $curl;
     }
 }
