@@ -2,6 +2,8 @@
 
 namespace Instagram\Util;
 
+use Exception;
+
 final class Token
 {
     private const PARAM_REGEX = '/\("([a-zA-Z]+)",[0-9]+,"([a-zA-Z]+)",([0-9]+),([0-9]+),[0-9]+\)/';
@@ -14,7 +16,10 @@ final class Token
     public static function extract(string $string)
     {
         if (!preg_match(self::PARAM_REGEX, $string, $matches)) {
-            return false;
+            $result = self::extractDownloadUrl($string);
+            if($result != null){
+                return $result;
+            }
         }
         array_shift($matches);
 
@@ -47,5 +52,21 @@ final class Token
             return false;
         }
         return $tokens[count($tokens) -1];
+    }
+
+    private static function extractDownloadUrl($text) {
+
+        // Decodifica il JSON
+        $data = json_decode($text, true);
+        try {
+            if ($data && isset($data["data"][0]["downloadUrl"])) {
+                $url = str_replace('\/', '/',$data["data"][0]["downloadUrl"]);
+                return $url;
+            }else{
+                return null;
+            }
+        }catch (Exception $e){
+            return null;
+        }
     }
 }
