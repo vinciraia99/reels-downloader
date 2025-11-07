@@ -7,7 +7,7 @@ use Exception;
 final class Token
 {
     private const PARAM_REGEX = '/\("([a-zA-Z]+)",[0-9]+,"([a-zA-Z]+)",([0-9]+),([0-9]+),[0-9]+\)/';
-    const URL_TOKEN_REGEX = '/https:\/\/d\.rapidcdn\.app\/snapinst\?token=[^&\'" <>\s]+/';
+    const URL_TOKEN_REGEX = '/https:\/\/d\.rapidcdn\.app\/v2\?token=[^&\'" <>\s]+/';
     const TOKEN_REGEX = '/token=([^&]+)/';
 
     /**

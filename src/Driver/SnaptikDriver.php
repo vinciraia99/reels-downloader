@@ -12,20 +12,20 @@ class SnaptikDriver implements DriverInterface
 {
     use Crawlable;
 
-    public const CDN_URL = 'https://d.rapidcdn.app';
+    public const CDN_URL = 'https://d.rapidcdn.app/v2';
 
     public function handle(string $url)
     {
         $browser = $this->getBrowser();
 
         $crawler = $browser
-            ->request('GET', 'https://snapins.ai/')
+            ->request('GET', 'https://snapinsta.ai')
             ->filter('form')
             ->first();
 
         /** @var \DOMElement */
         $el = $crawler->getNode(0);
-        $el->setAttribute('action', '/action.php');
+        $el->setAttribute('action', '/action2.php');
         $el->setAttribute('method', 'POST');
 
         $form = $crawler->form()->setValues(['url' => $url]);
@@ -36,9 +36,9 @@ class SnaptikDriver implements DriverInterface
         $response = $browser->getResponse();
 
         $token = Token::extract($response->getContent());
-        return $token!=false ? $token : false;
+        //return $token!=false ? $token : false;
 
-        //return $token ? sprintf('%s/?token=%s&dl=1', self::CDN_URL, $token) : false;
+        return $token ? sprintf('%s/?token=%s&dl=1', self::CDN_URL, $token) : false;
     }
 
 }
